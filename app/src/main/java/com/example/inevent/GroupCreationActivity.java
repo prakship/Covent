@@ -129,7 +129,7 @@ public class GroupCreationActivity extends AppCompatActivity {
         String email = currentUser.getEmail();
 
         String gid = databaseGroup.push().getKey();
-        Group group = new Group(groupName, dateObject, email, "safe", groupList.size(), groupLocation,0);
+        Group group = new Group(groupName, groupDate, email, "safe", groupList.size(), groupLocation,0);
         databaseGroup.child(gid).setValue(group);
 
         for (int i = 0; i < groupList.size(); i++) {

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Group {
 
     String gName;
-    Date gDate;
+    String gDate;
     String gAdmin;
     String gSafe;
     Integer gCount;
@@ -24,7 +24,7 @@ public class Group {
 
     }
 
-    public Group(String gName, Date gDate, String gAdmin, String gSafe, Integer gCount, String gPlace, Integer gAffectedCount) {
+    public Group(String gName, String gDate, String gAdmin, String gSafe, Integer gCount, String gPlace, Integer gAffectedCount) {
         this.gName = gName;
         this.gDate = gDate;
         this.gAdmin = gAdmin;
@@ -42,11 +42,11 @@ public class Group {
         this.gName = gName;
     }
 
-    public Date getgDate() {
+    public String getgDate() {
         return gDate;
     }
 
-    public void setgDate(Date gDate) {
+    public void setgDate(String gDate) {
         this.gDate = gDate;
     }
 

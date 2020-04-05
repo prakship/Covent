@@ -236,24 +236,28 @@ public class MainActivity extends AppCompatActivity {
                 for(final DataSnapshot connectionSnapshot : dataSnapshot.getChildren()){
                     final Connection con = connectionSnapshot.getValue(Connection.class);
 
-                    databaseGroup.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
-                            for(final DataSnapshot groupSnapshot : dataSnapshot1.getChildren() ){
-                                Group group = groupSnapshot.getValue(Group.class);
+                    if(con.getEmail().equals(currentUser.getEmail())) {
 
-                                if(groupSnapshot.getKey().equals(con.gId)){
-                                    int temp = group.gAffectedCount;
-                                    groupSnapshot.getRef().child("gAffectedCount").setValue(temp+1);
+                        databaseGroup.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot1) {
+                                for (final DataSnapshot groupSnapshot : dataSnapshot1.getChildren()) {
+                                    Group group = groupSnapshot.getValue(Group.class);
+
+                                    if (groupSnapshot.getKey().equals(con.gId)) {
+                                        int temp = group.gAffectedCount;
+                                        Log.i("temp: ", temp + "");
+                                        groupSnapshot.getRef().child("gAffectedCount").setValue(temp + 1);
+                                    }
                                 }
                             }
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
             }
 
